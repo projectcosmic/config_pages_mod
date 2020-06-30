@@ -1,0 +1,6 @@
+name: Config Pages Modifications
+type: module
+description: 'Modifications to config_pages for user experience improvements.'
+package: Custom
+core: 8.x
+core_version_requirement: ^8 || ^9

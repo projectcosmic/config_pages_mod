@@ -1,0 +1,2 @@
+config_pages_mod:
+  deriver: 'Drupal\config_pages_mod\Plugin\Derivative\ConfigPagesContextualLinks'

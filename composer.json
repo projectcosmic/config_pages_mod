@@ -1,0 +1,14 @@
+{
+    "name": "projectcosmic/config_pages_mod",
+    "description": "Modifications to config_pages for user experience improvements.",
+    "type": "drupal-module",
+    "authors": [
+        {
+            "name": "Justin Wong",
+            "email": "justin@cosmic.co.uk"
+        }
+    ],
+    "require": {
+        "drupal/core": "^8 || ^9"
+    }
+}

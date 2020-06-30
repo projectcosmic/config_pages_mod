@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ * Modifications to config_pages for user experience improvements.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for config_pages_form.
+ */
+function config_pages_mod_form_config_pages_form_alter(array &$form, FormStateInterface $form_state) {
+  // Alter page title to label of the config_page entity bundle.
+  $form['#title'] = $form_state
+    ->getFormObject()
+    ->getEntity()
+    ->get('type')
+    ->first()
+    ->get('entity')
+    ->getValue()
+    ->label();
+
+  // Add submit handler to override success message.
+  $form['actions']['submit']['#submit'][] = 'config_pages_mod_config_pages_form_submit';
+}
+
+/**
+ * Submit callback for config_pages_form.
+ */
+function config_pages_mod_config_pages_form_submit(array $form, FormStateInterface $form_state) {
+  $messenger = \Drupal::messenger();
+
+  // If no errors, add a more sensical update message.
+  if (empty($messenger->messagesByType(MessengerInterface::TYPE_ERROR))) {
+    $messenger->deleteByType(MessengerInterface::TYPE_STATUS);
+    $messenger->addStatus(t('@info updated.', ['@info' => $form_state->getFormObject()->getEntity()->label()]));
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function config_pages_mod_views_data_alter(&$data) {
+  if (isset($data['views']['entity_config_pages'])) {
+    $data['views']['entity_config_pages']['area']['id'] = 'config_pages_mod_config_page';
+  }
+}
