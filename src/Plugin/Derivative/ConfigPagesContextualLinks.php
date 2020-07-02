@@ -56,7 +56,7 @@ class ConfigPagesContextualLinks extends DeriverBase implements ContainerDeriver
       foreach ($this->configPagesTypeStorage->loadMultiple() as $page) {
         $route_name = "config_pages.{$page->id()}";
         $this->derivatives[$route_name]['route_name'] = $route_name;
-        $this->derivatives[$route_name]['group'] = 'config_pages_mod';
+        $this->derivatives[$route_name]['group'] = 'config_pages';
         $this->derivatives[$route_name]['title'] = $this->t('Edit in @title', ['@title' => $page->label()]);
       }
     }
