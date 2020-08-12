@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\config_pages_mod\Kernel;
+namespace Drupal\Tests\config_pages_mod\Functional;
 
 use Drupal\config_pages\Entity\ConfigPagesType;
 use Drupal\Core\Url;
