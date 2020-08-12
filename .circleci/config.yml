@@ -1,0 +1,14 @@
+version: 2.1
+
+orbs:
+  drupal: projectcosmic/drupal@1.1.0
+
+workflows:
+  test:
+    jobs:
+      - drupal/extension_test:
+          extension_type: module
+          composer_require: drupal/config_pages
+          matrix:
+            parameters:
+              drupal_version: ['8', '9']
